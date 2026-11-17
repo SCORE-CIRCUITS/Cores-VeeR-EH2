@@ -336,7 +336,7 @@ import eh2_pkg::*;
    assign dma_dbg_mem_rddata[pt.XLEN-1:0] = fifo_addr[RspPtr][2] ? fifo_data[RspPtr][pt.BUS_WIDTH-1:pt.XLEN] : fifo_data[RspPtr][pt.XLEN-1:0];
    assign dma_dbg_rddata[pt.XLEN-1:0] = ({pt.XLEN{(dma_dbg_sz[1:0] == 2'h0)}} & ((dma_dbg_mem_rddata[pt.XLEN-1:0] >> 8*dma_dbg_addr[pt.XLEN_ADDR_OFF-1:0]) & pt.XLEN'('hff))) |
                                         ({pt.XLEN{(dma_dbg_sz[1:0] == 2'h1)}} & ((dma_dbg_mem_rddata[pt.XLEN-1:0] >> 16*dma_dbg_addr[pt.XLEN_ADDR_OFF-1:1]) & pt.XLEN'('hffff))) |
-                                        ({pt.XLEN{(dma_dbg_sz[1:0] == 2'h2)}} & ((dma_dbg_mem_rddata[pt.XLEN-1:0] >> ((32*dma_dbg_addr[pt.XLEN_ADDR_OFF-1]) & (pt.XLEN == 32))) & pt.XLEN'('hffffffffff))) |
+                                        ({pt.XLEN{(dma_dbg_sz[1:0] == 2'h2)}} & ((dma_dbg_mem_rddata[pt.XLEN-1:0] >> ((32*dma_dbg_addr[pt.XLEN_ADDR_OFF-1]) & (pt.XLEN == 32))) & pt.XLEN'('hffffffff))) |
                                         ({pt.XLEN{(dma_dbg_sz[1:0] == 2'h3) & (pt.XLEN == 64)}} & dma_dbg_mem_rddata[pt.XLEN-1:0]);
 
    assign dma_dbg_cmd_error = fifo_valid[RdPtr] & ~fifo_done[RdPtr] & fifo_dbg[RdPtr] &

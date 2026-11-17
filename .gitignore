@@ -6,3 +6,8 @@ obj_dir
 *.log
 *.exe
 *.swp
+
+# SCORE Verilator simulation outputs
+program.hex
+snapshots/
+verilator-build
